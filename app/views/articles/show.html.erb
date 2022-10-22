@@ -1,3 +1,13 @@
-<h1>HEllo article <%= @article.id %></h1>
-<strong>desc:</strong> <%= @article.title %><hr/>
-title: <%= @article.description %>
+<h2 class="text-center"><%= @article.title %></h2>
+    <div class="card mb-3 center">
+    <h5 class="card-header text-secondary">By Mohammad khassawneh</h5>
+    <div class="card-body">
+        <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+        <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-outline-primary' %><br /><br />
+        <%= button_to 'Delete', article_path(@article), method: :delete, class: 'btn btn-outline-danger d-inline' %>
+    </div>
+    <div class="card-footer text-muted">
+        <small><%= "created #{time_ago_in_words(@article.created_at)} ago, edited #{time_ago_in_words(@article.updated_at)} ago" %></small>
+    </div>
+    </div>
+<%= link_to 'Create new article', new_article_path, class: 'btn btn-primary btn-lg btn-block' %>
