@@ -1,6 +1,7 @@
 <h2 class="text-center"><%= @article.title %></h2>
     <div class="card mb-3 center">
     <h5 class="card-header text-secondary">By <%= @article.user.username if @article.user %></h5>
+    <%= link_to gravatar_for(@article.user), user_path(@article.user), size: 50 %>
     <div class="card-body">
         <div class="card-text text-left"><%= simple_format(@article.description) %></div>
         <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-outline-primary' %><br /><br />

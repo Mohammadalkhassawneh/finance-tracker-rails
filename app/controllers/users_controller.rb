@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /users/1 or /users/1.json
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "Your acount was updated succesfully"
-      redirect_to articles_path
+      redirect_to @user
     else
       render 'edit'
     end

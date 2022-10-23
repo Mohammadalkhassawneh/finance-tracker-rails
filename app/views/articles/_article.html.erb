@@ -1,6 +1,8 @@
 <% @articles.each do |article| %>
     <div class="card mb-3 text-center">
-    <h5 class="card-header text-secondary">By <%= article.user.username  if article.user%></h5>
+    <% if article.user %>
+        By <%= link_to article.user.username, user_path(article.user) %>
+    <% end %>
     <div class="card-body">
         <h5 class="card-title text-success"><%= article.title %></h5>
         <p class="card-text"><%= article.description %></p>
