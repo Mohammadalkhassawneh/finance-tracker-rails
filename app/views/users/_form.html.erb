@@ -1,22 +1,23 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= render 'shared/errors', obj: @user %>
+<div class="bg-success container rounded p-3">
+    <%= form_with(model: @user, local:true) do |f| %>
+    <form>
+    <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, class:'form-control', placeholder: 'enter a username' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class:'form-control', placeholder: 'enter your email' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class:'form-control', placeholder: 'enter your password' %>
+    </div>
+    <div class="form-group row justify-content-center">
+    <%= f.submit 'Sign Up', class: 'btn btn-outline-light btn-lg' %>
+    </div>
+    </form>
+    <% end %>
+</div>
+<%= link_to '[Return to article listing]', articles_path, class: 'text-success' %>
